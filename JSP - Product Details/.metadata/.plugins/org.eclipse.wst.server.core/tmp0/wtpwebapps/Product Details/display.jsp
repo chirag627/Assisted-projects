@@ -1,0 +1,38 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<style>
+td, th {
+	font-size: 20px;
+	padding: 30px
+}
+</style>
+	<div
+		style="display: inline-block; position: fixed; top: 0; bottom: 0; left: 0; right: 0; width: 600px; height: 570px; margin: auto;">
+
+		<center>
+			<h2>Product Display</h2>
+		</center>
+		<table>
+			<tr>
+				<th>Name</th>
+				<th>Category</th>
+				<th>Price</th>
+			</tr>
+			<tr>
+				<td>${Name}</td>
+				<td>${Category}</td>
+				<td>${Price}</td>
+
+			</tr>
+		</table>
+	</div>
+
+</body>
+</html>

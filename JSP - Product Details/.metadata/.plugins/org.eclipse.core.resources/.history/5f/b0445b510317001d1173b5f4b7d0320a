@@ -1,0 +1,5 @@
+package com.product.app.datalayer;
+
+public class productDBUtil {
+
+}

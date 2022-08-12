@@ -1,0 +1,66 @@
+package com.product.app.datalayer;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.sql.DataSource;
+
+import com.product.app.model.Product;
+
+public class productDBUtil {
+
+	private DataSource dataSource;
+
+	public productDBUtil(DataSource dataSource) {
+		this.dataSource = dataSource;
+	}
+
+	public List<Product> getProducts(String productID) {
+		List<Product> products = new ArrayList<>();
+
+		Connection conn = null;
+		Statement stmt = null;
+		ResultSet rs = null;
+
+		try {
+			conn = dataSource.getConnection();
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery("select * from product");
+
+			while (rs.next()) {
+				int productID = rs.getInt(1);
+				String productName = rs.getString(2);
+				String productCategory = rs.getString(3);
+				String productPrice = rs.getString(4);
+				Product product = new Product(productID, productName, productCategory, productPrice);
+				products.add(product);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(conn, stmt, rs);
+		}
+
+		return products;
+	}
+
+	private void close(Connection conn, Statement stmt, ResultSet rs) {
+
+		try {
+			if (rs != null)
+				rs.close();
+			if (stmt != null)
+				stmt.close();
+			if (conn != null)
+				conn.close();
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		}
+	}
+
+}

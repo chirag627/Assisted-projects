@@ -1,0 +1,57 @@
+package com.product.app.servlet;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.annotation.Resource;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.sql.DataSource;
+import com.product.app.model.Product;
+
+@WebServlet("/productControllerServlet")
+public class productControllerServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+	private productDBUtil productDBUtil;
+
+	@Resource(name = "jdbc/productwebapp")
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		List<String> errors = new ArrayList<>();
+
+		String productName = request.getParameter("productName");
+		String productCategory = request.getParameter("productCategory");
+		Double productPrice = request.getParameter("productPrice");
+
+		if (productName.length() == 0) {
+			errors.add("Product name cannot be empty");
+		}
+		if (productCategory.length() == 0) {
+			errors.add("Product category cannot be empty");
+		}
+
+		try {
+			Double.parseDouble(request.getParameter("productPrice"));
+		} catch (NumberFormatException e) {
+			errors.add("Product Price invalid");
+
+		}
+
+		if (errors.isEmpty()) {
+			Product p = new Product(productName, productPrice, productCategory);
+		}
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		doGet(request, response);
+	}
+
+}

@@ -1,0 +1,55 @@
+package com.product.app.model;
+
+public class Product {
+	private int productID;
+	private String productName;
+	private String productPrice;
+	private String productCat;
+
+	public int getProductID() {
+		return productID;
+	}
+
+	public void setProductID(int productID) {
+		this.productID = productID;
+	}
+
+	public String getProductName() {
+		return productName;
+	}
+
+	public void setProductName(String productName) {
+		this.productName = productName;
+	}
+
+	public String getProductPrice() {
+		return productPrice;
+	}
+
+	public void setProductPrice(String productPrice) {
+		this.productPrice = productPrice;
+	}
+
+	public String getProductCat() {
+		return productCat;
+	}
+
+	public void setProductCat(String productCat) {
+		this.productCat = productCat;
+	}
+
+	@Override
+	public String toString() {
+		return "Product [productID=" + productID + ", productName=" + productName + ", productPrice=" + productPrice
+				+ ", productCat=" + productCat + "]";
+	}
+
+	public Product(int productID, String productName, String productPrice, String productCat) {
+		super();
+		this.productID = productID;
+		this.productName = productName;
+		this.productPrice = productPrice;
+		this.productCat = productCat;
+	}
+
+}

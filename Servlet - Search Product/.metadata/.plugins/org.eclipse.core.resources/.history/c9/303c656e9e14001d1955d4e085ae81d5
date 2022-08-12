@@ -1,0 +1,67 @@
+package com.products.app;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.*;
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+public class searchProduct extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+	private Connection conn;
+	PreparedStatement query;
+	private ResultSet result;
+
+	@Override
+	public void init(ServletConfig config) throws ServletException {
+		ServletContext context = config.getServletContext();
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			conn = DriverManager.getConnection(context.getInitParameter("dbUrl"), context.getInitParameter("dbUser"),
+					context.getInitParameter("dbPass"));
+
+		} catch (SQLException e) {
+			System.out.println("Connection to the database failed...");
+		} catch (ClassNotFoundException e) {
+			System.out.println("Driver not found...");
+		}
+
+	}
+
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		PrintWriter pw = resp.getWriter();
+		String product = req.getParameter("product");
+
+		try {
+			PreparedStatement query = conn.prepareStatement("Select * from products where prodId = ?");
+			query.setString(1, product);
+			result = query.executeQuery();
+			if (result.next()) {
+				pw.println("Product found in the database");
+			} else {
+				pw.println("Product not found in the database");
+
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+	@Override
+	public void destroy() {
+		try {
+			query.close();
+			conn.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		

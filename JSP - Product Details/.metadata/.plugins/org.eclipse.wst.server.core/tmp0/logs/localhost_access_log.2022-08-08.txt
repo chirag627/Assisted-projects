@@ -1,0 +1,9 @@
+127.0.0.1 - - [08/Aug/2022:16:49:45 +0530] "GET / HTTP/1.1" 404 751
+0:0:0:0:0:0:0:1 - - [08/Aug/2022:16:49:47 +0530] "GET /Product_Details/index.jsp HTTP/1.1" 200 385
+0:0:0:0:0:0:0:1 - - [08/Aug/2022:16:49:54 +0530] "GET /Product_Details/productControllerServlet?productName=yty&productPrice=yty&productCategory=77&submit=submit HTTP/1.1" 500 1388
+0:0:0:0:0:0:0:1 - - [08/Aug/2022:16:51:19 +0530] "GET /Product_Details/index.jsp HTTP/1.1" 200 385
+0:0:0:0:0:0:0:1 - - [08/Aug/2022:16:51:19 +0530] "GET /favicon.ico HTTP/1.1" 404 762
+0:0:0:0:0:0:0:1 - - [08/Aug/2022:16:51:27 +0530] "GET /Product_Details/productControllerServlet?productName=gdgdg&productPrice=gdgdgd&productCategory=2629&submit=submit HTTP/1.1" 302 -
+0:0:0:0:0:0:0:1 - - [08/Aug/2022:16:51:27 +0530] "GET /Product_Details/index.jsp HTTP/1.1" 200 385
+0:0:0:0:0:0:0:1 - - [08/Aug/2022:16:51:37 +0530] "GET /Product_Details/productControllerServlet?productName=gdgdg&productPrice=dgdgd&productCategory=70&submit=submit HTTP/1.1" 302 -
+0:0:0:0:0:0:0:1 - - [08/Aug/2022:16:51:37 +0530] "GET /Product_Details/index.jsp HTTP/1.1" 200 385
